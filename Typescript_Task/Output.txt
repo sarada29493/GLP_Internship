@@ -20,3 +20,6 @@ Hello_*****_apple
 The_Big_*****_Dog
 jump_over_****_dog
 This_**_a_test
+
+Task 5 Output-
+User data for 123; User preferences for 123
