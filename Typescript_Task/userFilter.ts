@@ -162,3 +162,69 @@ console.log(processText("jump over lazy dog", "lazy"));
 
 console.log(processText("This IS a teSt", "is"));
 // Output: "This_**_a_test"  
+
+//Task 5- 
+interface ApiError {
+  errorCode: string;
+  message: string;
+}
+
+function WorkspaceUserData(userId: number): Promise<string> {
+  return new Promise((resolve) => {
+      setTimeout(() => {
+          resolve(`User data for ${userId}`);
+      }, 1000);
+  });
+}
+
+function WorkspaceUserPreferences(userId: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+      const shouldFail = Math.random() < 0.3;
+      
+      setTimeout(() => {
+          if (shouldFail) {
+              reject({
+                  errorCode: 'PREF_FETCH_FAILED',
+                  message: 'Could not fetch preferences'
+              });
+          } else {
+              resolve(`User preferences for ${userId}`);
+          }
+      }, 500);
+  });
+}
+
+function getCombinedData(userId: number): Promise<string> {
+  const timeoutPromise = new Promise<never>((_, reject) => {
+      setTimeout(() => {
+          reject(new Error('Timeout fetching combined data.'));
+      }, 1200);
+  });
+
+  const userDataPromise = WorkspaceUserData(userId);
+  const userPrefsPromise = WorkspaceUserPreferences(userId)
+      .catch((error: ApiError) => {
+          if (error.errorCode === 'PREF_FETCH_FAILED') {
+              return `Preferences unavailable (Error: ${error.errorCode})`;
+          }
+          throw error;
+      });
+
+  return Promise.race([
+      Promise.all([userDataPromise, userPrefsPromise])
+          .then(([data, prefs]) => `${data}; ${prefs}`),
+      timeoutPromise
+  ]);
+}
+
+// Example usage
+getCombinedData(123)
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error.message));
+
+export {
+  WorkspaceUserData,
+  WorkspaceUserPreferences,
+  getCombinedData,
+  ApiError
+};
