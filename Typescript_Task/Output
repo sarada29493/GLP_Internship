@@ -1,0 +1,7 @@
+[ 'John', 'Brian', 'Anna' ],
+[
+  'Login "Jo" is of invalid length. Acceptable length is 5-15 characters.',
+  'Email address "john.doeexample.com" appears to be incomplete.',
+  'Error: Password is too weak. Required: min. 8 characters, uppercase/lowercase letter, digit.',
+  'Error: Age "102" is outside the allowed range (18-99).'
+]
