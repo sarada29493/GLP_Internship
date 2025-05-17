@@ -1,4 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var miniStore_1 = require("./miniStore");
 //Task 1: Transforming and Filtering Data with an Unusual Condition
+//Start Task 1
 function getQualifiedUserNames(users) {
     return users
         .filter(function (user) {
@@ -59,3 +63,15 @@ var userInput = {
 };
 var validationErrors = validateRegistrationForm(userInput);
 console.log(validationErrors);
+// End Task 2
+//Task 3: Implement a "Mini-Redux Store" for a counter
+//Start Task 3
+var store = new miniStore_1.MiniStore();
+var unsubscribe = store.subscribe(function () {
+    console.log('State changed:', store.getState());
+});
+store.dispatch({ type: 'INCREMENT' }); // State: 1
+store.dispatch({ type: 'DECREMENT' }); // State: 0
+store.dispatch({ type: 'SET', payload: 42 }); // State: 42
+unsubscribe(); // Stop listening to changes
+store.dispatch({ type: 'INCREMENT' }); // No log output

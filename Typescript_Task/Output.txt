@@ -1,7 +1,16 @@
-[ 'John', 'Brian', 'Anna' ],
+Task 1 Output
+
+[ 'John', 'Brian', 'Anna' ]
+
+Task 2 Output
 [
   'Login "Jo" is of invalid length. Acceptable length is 5-15 characters.',
   'Email address "john.doeexample.com" appears to be incomplete.',
   'Error: Password is too weak. Required: min. 8 characters, uppercase/lowercase letter, digit.',
   'Error: Age "102" is outside the allowed range (18-99).'
 ]
+
+Task 3 Output
+State changed: 1
+State changed: 0
+State changed: 42

@@ -1,3 +1,5 @@
+import { MiniStore } from './miniStore'
+
 type User = {
     id: number;
     name: string;
@@ -97,3 +99,21 @@ type RegistrationInput = {
 
   // End Task 2
 
+  //Task 3: Implement a "Mini-Redux Store" for a counter
+  //Start Task 3
+
+  const store = new MiniStore();
+
+  const unsubscribe = store.subscribe(() => {
+    console.log('State changed:', store.getState());
+  });
+  
+  store.dispatch({ type: 'INCREMENT' });
+  store.dispatch({ type: 'DECREMENT' }); 
+  store.dispatch({ type: 'SET', payload: 42 });
+  
+  unsubscribe(); 
+  store.dispatch({ type: 'INCREMENT' }); 
+
+  //End Task 3
+  
