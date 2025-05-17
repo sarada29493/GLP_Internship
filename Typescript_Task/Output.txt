@@ -1,8 +1,8 @@
-Task 1 Output
+Task 1 Output-
 
 [ 'John', 'Brian', 'Anna' ]
 
-Task 2 Output
+Task 2 Output-
 [
   'Login "Jo" is of invalid length. Acceptable length is 5-15 characters.',
   'Email address "john.doeexample.com" appears to be incomplete.',
@@ -10,7 +10,13 @@ Task 2 Output
   'Error: Age "102" is outside the allowed range (18-99).'
 ]
 
-Task 3 Output
+Task 3 Output-
 State changed: 1
 State changed: 0
 State changed: 42
+
+Task 4 Output-
+Hello_*****_apple
+The_Big_*****_Dog
+jump_over_****_dog
+This_**_a_test

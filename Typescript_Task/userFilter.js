@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var miniStore_1 = require("./miniStore");
 //Task 1: Transforming and Filtering Data with an Unusual Condition
-//Start Task 1
 function getQualifiedUserNames(users) {
     return users
         .filter(function (user) {
@@ -63,15 +62,54 @@ var userInput = {
 };
 var validationErrors = validateRegistrationForm(userInput);
 console.log(validationErrors);
-// End Task 2
 //Task 3: Implement a "Mini-Redux Store" for a counter
-//Start Task 3
 var store = new miniStore_1.MiniStore();
 var unsubscribe = store.subscribe(function () {
     console.log('State changed:', store.getState());
 });
-store.dispatch({ type: 'INCREMENT' }); // State: 1
-store.dispatch({ type: 'DECREMENT' }); // State: 0
-store.dispatch({ type: 'SET', payload: 42 }); // State: 42
-unsubscribe(); // Stop listening to changes
-store.dispatch({ type: 'INCREMENT' }); // No log output
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'DECREMENT' });
+store.dispatch({ type: 'SET', payload: 42 });
+unsubscribe();
+store.dispatch({ type: 'INCREMENT' });
+//Task 4-String Function with Unusual Condition and Formatting
+function processText(text, forbiddenWord) {
+    var words = text.split(' ');
+    var isForbidden = function (word, forbidden) {
+        return word.toLowerCase() === forbidden.toLowerCase();
+    };
+    var toCamelCase = function (word) {
+        if (word.length <= 3)
+            return word;
+        var firstChar = word.charAt(0);
+        var rest = word.slice(1).toLowerCase();
+        return firstChar === firstChar.toUpperCase()
+            ? firstChar.toUpperCase() + rest
+            : firstChar.toLowerCase() + rest;
+    };
+    var repeatAsterisk = function (count) {
+        var result = '';
+        for (var i = 0; i < count; i++) {
+            result += '*';
+        }
+        return result;
+    };
+    var processed = words.map(function (word) {
+        if (isForbidden(word, forbiddenWord)) {
+            return repeatAsterisk(forbiddenWord.length);
+        }
+        else if (word.length > 3) {
+            return toCamelCase(word);
+        }
+        return word;
+    });
+    return processed.join('_');
+}
+console.log(processText("Hello world apple", "world"));
+// Output: "Hello_*****_apple"
+console.log(processText("The Big Brown Dog", "brown"));
+// Output: "The_Big_*****_Dog"
+console.log(processText("jump over lazy dog", "lazy"));
+// Output: "jump_over_****_dog"
+console.log(processText("This IS a teSt", "is"));
+// Output: "This_**_a_test"  
