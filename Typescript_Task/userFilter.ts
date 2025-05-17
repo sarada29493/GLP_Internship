@@ -163,7 +163,7 @@ console.log(processText("jump over lazy dog", "lazy"));
 console.log(processText("This IS a teSt", "is"));
 // Output: "This_**_a_test"  
 
-//Task 5- 
+//Task 5- Asynchronous data fetching and processing with delay and specific error handling
 interface ApiError {
   errorCode: string;
   message: string;
